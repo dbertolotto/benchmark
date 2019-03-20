@@ -1,0 +1,40 @@
+echo "*** version"
+echo "-- picolisp"
+pil -version -bye
+echo "-- python"
+python --version
+echo "-- go"
+go version
+
+echo
+echo "*** recursive"
+echo "-- picolisp"
+pil recursive.l +
+echo "-- python"
+python recursive.py
+echo "-- go"
+go run utils.go recursive.go
+
+echo
+echo "*** recursive w/ cache"
+echo "-- picolisp"
+pil recursive-cache.l +
+echo "-- python"
+python recursive-cache.py
+
+echo
+echo "*** recursive (improved)"               
+echo "-- picolisp"
+pil recursive-better.l +
+echo "-- python"                              
+python recursive-better.py
+
+echo
+echo "*** iterative"
+echo "-- picolisp"
+pil iterative.l +
+echo "-- python"
+python iterative.py
+echo "-- go"
+go run utils.go iterative.go
+
