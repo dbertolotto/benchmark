@@ -24,7 +24,7 @@ func wrap(n int64) *big.Int {
 }
 
 func main() {
-  var n int64 = 25000
+  var n int64 = 50000
   var s = fmt.Sprintf("%d", wrap(n))
   fmt.Printf("n=%d, f=%s\n", n, limit(s,10))
 }

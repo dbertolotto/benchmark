@@ -5,6 +5,8 @@ echo "-- python"
 python --version
 echo "-- go"
 go version
+echo "-- chicken"
+csi -release
 
 echo
 echo "*** recursive"
@@ -14,6 +16,10 @@ echo "-- python"
 python recursive.py
 echo "-- go"
 go run utils.go recursive.go
+echo "-- chicken interpreted"
+csi -b recursive.scm
+echo "-- chicken compiled"
+csc -O5 recursive.scm; ./recursive
 
 echo
 echo "*** recursive w/ cache"
@@ -37,4 +43,7 @@ echo "-- python"
 python iterative.py
 echo "-- go"
 go run utils.go iterative.go
-
+echo "-- chicken interpreted"
+csi -b iterative.scm
+echo "-- chicken compiled"
+csc -O5 iterative.scm; ./iterative

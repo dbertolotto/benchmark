@@ -8,7 +8,7 @@ def fibo(n):
 
 @utils.bench
 def run(n):
-    fibo(n)
+    return fibo(n)
 
 n=35
 s = utils.limit("{}".format(run(n)), 10)

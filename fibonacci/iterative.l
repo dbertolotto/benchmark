@@ -5,7 +5,7 @@
       (do N
          (prog1 B (setq B (+ A B) A @)))))
 
-(let n 25000
+(let n 50000
   (println 'n n 
            'fib (limit (bench (fibo n)) 10)))
 

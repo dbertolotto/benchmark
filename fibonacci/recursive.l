@@ -3,7 +3,7 @@
 (de fibo (N)
    (if (>= 2 N)
       1
-      (+ (fibo (dec N)) (fibo (- N 2)))))
+      (+ (fibo (- N 1)) (fibo (- N 2)))))
 
 (let n 35
    (println 'n n 

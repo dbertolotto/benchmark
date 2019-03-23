@@ -13,6 +13,6 @@ def fibIter(n):
 def run(n):
     return fibIter(n)
 
-n=25000
+n=50000
 s = utils.limit("{}".format(run(n)), 10)
 print('n={} fib={}'.format(n, s))
