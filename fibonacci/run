@@ -21,8 +21,8 @@ go run utils.go recursive.go
 echo "-- chicken interpreted"
 csi -q -b recursive.scm
 echo "-- chicken compiled"
-csc -O5 recursive.scm >/dev/null
-./recursive
+csc -O5 recursive.scm -o recursive.cs >/dev/null
+./recursive.cs
 echo "-- ecl interpreted"
 ecl -norc -load recursive.lisp
 echo "-- ecl compiled"
@@ -54,8 +54,8 @@ go run utils.go iterative.go
 echo "-- chicken interpreted"
 csi -q -b iterative.scm
 echo "-- chicken compiled"
-csc -O5 iterative.scm >/dev/null
-./iterative
+csc -O5 iterative.scm -o iterative.cs >/dev/null
+./iterative.cs
 echo "-- ecl interpreted"
 ecl -norc -load iterative.lisp
 echo "-- ecl compiled"
