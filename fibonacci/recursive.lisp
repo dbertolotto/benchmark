@@ -12,3 +12,5 @@
        (fib (time (fib-rec n)))
        (fibl (limit (format nil "~A" fib) 10)))
   (format t "n=~A fib=~A~%" n fibl))
+
+(quit)

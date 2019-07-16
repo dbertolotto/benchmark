@@ -7,6 +7,8 @@ echo "-- go"
 go version
 echo "-- chicken"
 csi -release
+echo "-- ecl"
+ecl --version
 
 echo
 echo "*** recursive"
@@ -17,9 +19,15 @@ python recursive.py
 echo "-- go"
 go run utils.go recursive.go
 echo "-- chicken interpreted"
-csi -b recursive.scm
+csi -q -b recursive.scm
 echo "-- chicken compiled"
-csc -O5 recursive.scm; ./recursive
+csc -O5 recursive.scm >/dev/null
+./recursive
+echo "-- ecl interpreted"
+ecl -norc -load recursive.lisp
+echo "-- ecl compiled"
+ecl -norc -compile recursive.lisp >/dev/null
+ecl -norc -load recursive.fas
 
 echo
 echo "*** recursive w/ cache"
@@ -44,6 +52,12 @@ python iterative.py
 echo "-- go"
 go run utils.go iterative.go
 echo "-- chicken interpreted"
-csi -b iterative.scm
+csi -q -b iterative.scm
 echo "-- chicken compiled"
-csc -O5 iterative.scm; ./iterative
+csc -O5 iterative.scm >/dev/null
+./iterative
+echo "-- ecl interpreted"
+ecl -norc -load iterative.lisp
+echo "-- ecl compiled"
+ecl -norc -compile iterative.lisp >/dev/null
+ecl -norc -load iterative.fas
