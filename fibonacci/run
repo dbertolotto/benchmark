@@ -25,9 +25,12 @@ csc -O5 recursive.scm -o recursive.cs >/dev/null
 ./recursive.cs
 echo "-- ecl interpreted"
 ecl -norc -load recursive.lisp
-echo "-- ecl compiled"
+echo "-- ecl compiled (fasl)"
 ecl -norc -compile recursive.lisp >/dev/null
 ecl -norc -load recursive.fas
+echo "-- ecl compiled (exe)"
+ecl -norc -load recursive-ecl-compile.lisp >/dev/null
+./recursive.ecl
 
 echo
 echo "*** recursive w/ cache"
@@ -58,6 +61,9 @@ csc -O5 iterative.scm -o iterative.cs >/dev/null
 ./iterative.cs
 echo "-- ecl interpreted"
 ecl -norc -load iterative.lisp
-echo "-- ecl compiled"
+echo "-- ecl compiled (fasl)"
 ecl -norc -compile iterative.lisp >/dev/null
 ecl -norc -load iterative.fas
+echo "-- ecl compiled (exe)"
+ecl -norc -load iterative-ecl-compile.lisp >/dev/null
+./iterative.ecl

@@ -1,3 +1,5 @@
+;(ext:install-c-compiler)
+;(declaim (optimize (debug 2) (safety 0) (space 0) (speed 3)))
 (defun fib-rec (n)
   (if (< n 2)
     n
