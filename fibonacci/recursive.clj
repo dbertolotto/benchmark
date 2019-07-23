@@ -9,7 +9,7 @@
   (let [s (str o)
         c (count s)]
     (if (> c l)               
-      (subs s 0 l)                              
+      (str (subs s 0 l) "+")      
       s)))
 
 (defn main []
