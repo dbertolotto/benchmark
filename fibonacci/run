@@ -1,6 +1,15 @@
+MSG_NOT_FOUND="...not found"
+MSG_PIL="-- picolisp"
+MSG_CLJ="-- clojure"
+
 echo "*** version"
-echo "-- picolisp"
-pil -version -bye
+echo $MSG_PIL
+if command -v pil; then
+  pil -version -bye
+  PIL_EXE=pil
+else
+  echo $MSG_NOT_FOUND
+fi
 echo "-- python"
 python --version
 echo "-- go"
@@ -9,13 +18,20 @@ echo "-- chicken"
 csi -release
 echo "-- ecl"
 ecl --version
-#echo "-- clojure"
-#clojure -e "(println (clojure-version))"
+echo "-- clojure"
+if command -v clojure; then
+  clojure -e "(println (clojure-version))"
+  CLJ_EXE=clojure
+else
+  echo $MSG_NOT_FOUND
+fi
 
 echo
 echo "*** recursive"
-echo "-- picolisp"
-pil recursive.l +
+if [ -v PIL_EXE ]; then
+  echo $MSG_PIL
+  $PIL_EXE recursive.l +
+fi
 echo "-- python"
 python recursive.py
 echo "-- go"
@@ -33,27 +49,35 @@ ecl -norc -load recursive.fas
 echo "-- ecl compiled (exe)"
 ecl -norc -load recursive-ecl-compile.lisp >/dev/null
 ./recursive.ecl
-echo "-- clojure"
-clojure recursive.clj
+if [ -v CLJ_EXE ]; then
+  echo $MSG_CLJ
+  $CLJ_EXE recursive.clj
+fi
 
 echo
 echo "*** recursive w/ cache"
-echo "-- picolisp"
-pil recursive-cache.l +
+if [ -v PIL_EXE ]; then
+  echo $MSG_PIL
+  $PIL_EXE recursive-cache.l +
+fi
 echo "-- python"
 python recursive-cache.py
 
 echo
 echo "*** recursive (improved)"               
-echo "-- picolisp"
-pil recursive-better.l +
+if [ -v PIL_EXE ]; then
+  echo $MSG_PIL
+  $PIL_EXE recursive-better.l +
+fi
 echo "-- python"                              
 python recursive-better.py
 
 echo
 echo "*** iterative"
-echo "-- picolisp"
-pil iterative.l +
+if [ -v PIL_EXE ]; then
+  echo $MSG_PIL
+  $PIL_EXE iterative.l +
+fi
 echo "-- python"
 python iterative.py
 echo "-- go"
@@ -71,5 +95,7 @@ ecl -norc -load iterative.fas
 echo "-- ecl compiled (exe)"
 ecl -norc -load iterative-ecl-compile.lisp >/dev/null
 ./iterative.ecl
-echo "-- clojure"
-clojure iterative.clj
+if [ -v CLJ_EXE ]; then
+  echo $MSG_CLJ
+  $CLJ_EXE iterative.clj
+fi
