@@ -1,24 +1,69 @@
 MSG_NOT_FOUND="...not found"
 MSG_PIL="-- picolisp"
+MSG_PYT="-- python"
+MSG_GOL="-- go"
+MSG_CSI="-- chicken (interpreted)"
+MSG_CSC="-- chicken (compiled)"
+MSG_ECL="-- ecl"
 MSG_CLJ="-- clojure"
 
 echo "*** version"
+
 echo $MSG_PIL
 if command -v pil; then
-  pil -version -bye
   PIL_EXE=pil
+  $PIL_EXE -version -bye
 else
   echo $MSG_NOT_FOUND
 fi
-echo "-- python"
-python --version
-echo "-- go"
-go version
-echo "-- chicken"
-csi -release
-echo "-- ecl"
-ecl --version
-echo "-- clojure"
+
+echo $MSG_PYT
+if command -v python; then
+  PYT_EXE=python
+  $PYT_EXE --version
+elif command -v python3; then
+  PYT_EXE=python3
+  $PYT_EXE --version
+elif command -v python2; then
+  PYT_EXE=python2
+  $PYT_EXE --version
+else
+  echo $MSG_NOT_FOUND
+fi
+
+echo $MSG_GOL
+if command -v go; then
+  GOL_EXE=go
+  $GOL_EXE version
+else
+  echo $MSG_NOT_FOUND
+fi
+
+echo $MSG_CSI
+if command -v csi; then
+  CSI_EXE=csi
+  $CSI_EXE -release
+else
+  echo $MSG_NOT_FOUND
+fi
+
+echo $MSG_CSC
+if command -v csc; then
+  CSC_EXE=csi
+  $CSC_EXE -release
+else
+  echo $MSG_NOT_FOUND
+fi
+
+echo $MSG_ECL
+if command -v ecl; then
+  ECL_EXE=ecl
+  $ECL_EXE --version
+else
+  echo $MSG_NOT_FOUND
+fi
+
+echo $MSG_CLJ
 if command -v clojure; then
   clojure -e "(println (clojure-version))"
   CLJ_EXE=clojure
@@ -28,27 +73,38 @@ fi
 
 echo
 echo "*** recursive"
+
 if [ -v PIL_EXE ]; then
   echo $MSG_PIL
   $PIL_EXE recursive.l +
 fi
-echo "-- python"
-python recursive.py
+
+if [ -v PYT_EXE ]; then
+  echo $MSG_PYT
+  $PYT_EXE recursive.py
+fi
+
 echo "-- go"
 go run utils.go recursive.go
+
 echo "-- chicken interpreted"
 csi -q -b recursive.scm
+
 echo "-- chicken compiled"
 csc -O5 recursive.scm -o recursive.cs >/dev/null
 ./recursive.cs
+
 echo "-- ecl interpreted"
 ecl -norc -load recursive.lisp
+
 echo "-- ecl compiled (fasl)"
 ecl -norc -compile recursive.lisp >/dev/null
 ecl -norc -load recursive.fas
+
 echo "-- ecl compiled (exe)"
 ecl -norc -load recursive-ecl-compile.lisp >/dev/null
 ./recursive.ecl
+
 if [ -v CLJ_EXE ]; then
   echo $MSG_CLJ
   $CLJ_EXE recursive.clj
