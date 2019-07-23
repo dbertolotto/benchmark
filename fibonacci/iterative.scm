@@ -1,19 +1,15 @@
 (import
   scheme
   chicken.time
-  chicken.format
-  chicken.string)
+  chicken.format)
+
+(load "utils.scm")
 
 (define (fib-iter n)
     (do ((num 2 (+ num 1))
        (fib-prev 1 fib)
        (fib 1 (+ fib fib-prev)))
       ((>= num n) fib)))
-
-(define (limit s l)
-  (if (<= (length (string-chop s 1)) l)
-      s
-      (conc (car (string-chop s l)) "+")))
 
 (let* ((n 50000)
        (fib (time (fib-iter n)))
