@@ -1,16 +1,11 @@
+(load-file "utils.clj")
+
 (defn fib-rec [n]
   (case n
     0 0
     1 1
     (+ (fib-rec (- n 1))
        (fib-rec (- n 2)))))
-
-(defn limit [o l]                                 
-  (let [s (str o)
-        c (count s)]
-    (if (> c l)               
-      (str (subs s 0 l) "+")      
-      s)))
 
 (defn main []
   (let [n 35                           
