@@ -84,26 +84,38 @@ if [ -v PYT_EXE ]; then
   $PYT_EXE recursive.py
 fi
 
-echo "-- go"
-go run utils.go recursive.go
+if [ -v GOL_EXE ]; then
+  echo $MSG_GOL
+  $GOL_EXE run utils.go recursive.go
+fi
 
-echo "-- chicken interpreted"
-csi -q -b recursive.scm
+if [ -v CSI_EXE ]; then
+  echo $MSG_CSI
+  $CSI_EXE -q -b recursive.scm
+fi
 
-echo "-- chicken compiled"
-csc -O5 recursive.scm -o recursive.cs >/dev/null
-./recursive.cs
+if [ -v CSC_EXE ]; then
+  echo $MSG_CSC
+  $CSC_EXE -O5 recursive.scm -o recursive.cs 1>/dev/null 2>/dev/null
+  ./recursive.cs
+fi
 
-echo "-- ecl interpreted"
-ecl -norc -load recursive.lisp
+if [ -v ECL_EXE ]; then
+  echo "$MSG_ECL (interpreted)"
+  $ECL_EXE -norc -load recursive.lisp
+fi
 
-echo "-- ecl compiled (fasl)"
-ecl -norc -compile recursive.lisp >/dev/null
-ecl -norc -load recursive.fas
+if [ -v ECL_EXE ]; then
+  echo "$MSG_ECL (compiled - fasl)"
+  $ECL_EXE -norc -compile recursive.lisp 1>/dev/null 2>/dev/null
+  $ECL_EXE -norc -load recursive.fas
+fi
 
-echo "-- ecl compiled (exe)"
-ecl -norc -load recursive-ecl-compile.lisp >/dev/null
-./recursive.ecl
+if [ -v ECL_EXE ]; then
+  echo "$MSG_ECL (compiled - exe)"
+  $ECL_EXE -norc -load recursive-ecl-compile.lisp 1>/dev/null 2>/dev/null
+  ./recursive.ecl
+fi
 
 if [ -v CLJ_EXE ]; then
   echo $MSG_CLJ
@@ -112,45 +124,76 @@ fi
 
 echo
 echo "*** recursive w/ cache"
+
 if [ -v PIL_EXE ]; then
   echo $MSG_PIL
   $PIL_EXE recursive-cache.l +
 fi
-echo "-- python"
-python recursive-cache.py
+
+if [ -v PYT_EXE ]; then
+  echo $MSG_PYT
+  $PYT_EXE recursive-cache.py
+fi
 
 echo
-echo "*** recursive (improved)"               
+echo "*** recursive (improved)"
+
 if [ -v PIL_EXE ]; then
   echo $MSG_PIL
   $PIL_EXE recursive-better.l +
 fi
-echo "-- python"                              
-python recursive-better.py
+
+if [ -v PYT_EXE ]; then
+  echo $MSG_PYT
+  $PYT_EXE recursive-better.py
+fi
 
 echo
 echo "*** iterative"
+
 if [ -v PIL_EXE ]; then
   echo $MSG_PIL
   $PIL_EXE iterative.l +
 fi
-echo "-- python"
-python iterative.py
-echo "-- go"
-go run utils.go iterative.go
-echo "-- chicken interpreted"
-csi -q -b iterative.scm
-echo "-- chicken compiled"
-csc -O5 iterative.scm -o iterative.cs >/dev/null
-./iterative.cs
-echo "-- ecl interpreted"
-ecl -norc -load iterative.lisp
-echo "-- ecl compiled (fasl)"
-ecl -norc -compile iterative.lisp >/dev/null
-ecl -norc -load iterative.fas
-echo "-- ecl compiled (exe)"
-ecl -norc -load iterative-ecl-compile.lisp >/dev/null
-./iterative.ecl
+
+if [ -v PYT_EXE ]; then
+  echo $MSG_PYT
+  $PYT_EXE iterative.py
+fi
+
+if [ -v GOL_EXE ]; then
+  echo $MSG_GOL
+  $GOL_EXE run utils.go iterative.go
+fi
+
+if [ -v CSI_EXE ]; then
+  echo $MSG_CSI
+  $CSI_EXE -q -b iterative.scm
+fi
+
+if [ -v CSC_EXE ]; then
+  echo $MSG_CSC
+  $CSC_EXE -O5 iterative.scm -o iterative.cs 1>/dev/null 2>/dev/null
+  ./iterative.cs
+fi
+
+if [ -v ECL_EXE ]; then
+  echo "$MSG_ECL (interpreted)"
+  $ECL_EXE -norc -load iterative.lisp
+fi
+
+if [ -v ECL_EXE ]; then
+  echo "$MSG_ECL (compiled - fasl)"
+  $ECL_EXE -norc -compile iterative.lisp 1>/dev/null 2>/dev/null
+  $ECL_EXE -norc -load iterative.fas
+fi
+
+if [ -v ECL_EXE ]; then
+  echo "$MSG_ECL (compiled - exe)"
+  $ECL_EXE -norc -load iterative-ecl-compile.lisp 1>/dev/null 2>/dev/null
+  ./iterative.ecl
+fi
+
 if [ -v CLJ_EXE ]; then
   echo $MSG_CLJ
   $CLJ_EXE iterative.clj
