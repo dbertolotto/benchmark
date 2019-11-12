@@ -1,5 +1,6 @@
 import utils
 
+
 def fibIter(n):
     if n < 2:
         return n
@@ -9,10 +10,12 @@ def fibIter(n):
         fibPrev, fib = fib, fib + fibPrev
     return fib
 
+
 @utils.bench
 def run(n):
     return fibIter(n)
 
-n=50000
+
+n = 50000
 s = utils.limit("{}".format(run(n)), 10)
 print('n={} fib={}'.format(n, s))
