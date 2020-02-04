@@ -6,6 +6,7 @@ MSG_CSI="-- chicken (interpreted)"
 MSG_CSC="-- chicken (compiled)"
 MSG_ECL="-- ecl"
 MSG_CLJ="-- clojure"
+MSG_JAV="-- java"
 
 echo "*** version"
 
@@ -67,6 +68,14 @@ echo $MSG_CLJ
 if command -v clojure; then
   clojure -e "(println (clojure-version))"
   CLJ_EXE=clojure
+else
+  echo $MSG_NOT_FOUND
+fi
+
+echo $MSG_JAV
+if command -v java; then
+  JAV_EXE=java
+  $JAV_EXE --version
 else
   echo $MSG_NOT_FOUND
 fi
@@ -197,4 +206,9 @@ fi
 if [ -v CLJ_EXE ]; then
   echo $MSG_CLJ
   $CLJ_EXE iterative.clj
+fi
+
+if [ -v JAV_EXE ]; then
+  echo $MSG_JAV
+  $JAV_EXE iterative.java
 fi

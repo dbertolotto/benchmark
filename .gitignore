@@ -3,3 +3,4 @@ __pycache__
 *.cs
 *.ecl
 *.o
+*.class
