@@ -1,13 +1,12 @@
 (load-file "utils.clj")
 
 (defn fib-iter [n]  
-    (let [fib (map first (iterate (fn [[a b]] [b (+' a b)]) [0 1]))]
+    (let [f (fn [[a b]] [b (+' a b)])
+          fib (map first (iterate f [0 1]))]
       (nth fib n)))
 
 (defn main []
-  (let [n 50000
-      fib (time (fib-iter n))]
-    (println 
-      (format "n=%d, fib=%s" n (limit fib 10)))))
+  (let [n 50000]
+    (fibo n fib-iter "* plain")))
 
 (main)
