@@ -76,6 +76,7 @@ echo $MSG_JAV
 if command -v java; then
   JAV_EXE=java
   $JAV_EXE --version | head -1
+  javac *.java
 else
   echo $MSG_NOT_FOUND
 fi
@@ -133,7 +134,7 @@ fi
 
 if [ -v JAV_EXE ]; then
   echo $MSG_JAV
-  $JAV_EXE recursive.java
+  $JAV_EXE Recursive
 fi
 
 echo
@@ -215,5 +216,5 @@ fi
 
 if [ -v JAV_EXE ]; then
   echo $MSG_JAV
-  $JAV_EXE iterative.java
+  $JAV_EXE Iterative
 fi

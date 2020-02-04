@@ -1,8 +1,10 @@
 import java.math.BigInteger;
 
-public class iterative {
+public class Iterative {
 
-public static BigInteger itFibN(int n) {
+  private Iterative() {}
+
+private static BigInteger itFibN(int n) {
   if (n < 2) {
     return BigInteger.valueOf(n);
   }
@@ -20,22 +22,15 @@ public static BigInteger itFibN(int n) {
 
 public static void main(String... args) {
   int n = 50000;
+  fibBig(n);
+}
+
+private static void fibBig(int n) {
   long startTime = System.currentTimeMillis();
   BigInteger fib = itFibN(n);
   long endTime = System.currentTimeMillis();
-  long duration = (endTime - startTime);
   String s = fib.toString();
-  String timeReport = String.format("Elapsed time: %d msecs\n", duration);
-  String msg = String.format("n=%d, fib=%s\n", n, limit(s, 10));
-  System.out.print(timeReport + msg);
-}
-
-private static String limit(String s, int maxLen) {
-  if (s.length() < maxLen) {
-    return s;
-  } else {
-    return s.substring(0, maxLen) + "+";
-  }
+  Utils.report(startTime, endTime, n, s, "* Big");
 }
 
 }
