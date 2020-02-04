@@ -75,7 +75,7 @@ fi
 echo $MSG_JAV
 if command -v java; then
   JAV_EXE=java
-  $JAV_EXE --version
+  $JAV_EXE --version | head -1
 else
   echo $MSG_NOT_FOUND
 fi
@@ -129,6 +129,11 @@ fi
 if [ -v CLJ_EXE ]; then
   echo $MSG_CLJ
   $CLJ_EXE recursive.clj
+fi
+
+if [ -v JAV_EXE ]; then
+  echo $MSG_JAV
+  $JAV_EXE recursive.java
 fi
 
 echo

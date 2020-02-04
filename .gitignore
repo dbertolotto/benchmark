@@ -4,3 +4,4 @@ __pycache__
 *.ecl
 *.o
 *.class
+*.log
