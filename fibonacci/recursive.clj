@@ -7,7 +7,7 @@
     (+ (fib-rec (- n 1))
        (fib-rec (- n 2)))))
 
-(defn ^Long fib-rec-long [n]
+(defn fib-rec-long ^Long [n]
   (case n
     0 0
     1 1
