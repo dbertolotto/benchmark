@@ -5,7 +5,7 @@
     n
     (+ (fib-rec (- n 2)) (fib-rec (- n 1)))))
 
-(let* ((n 35)
+(let* ((n 37)
        (fib (time (fib-rec n)))
        (fibl (limit (format nil "~A" fib) 10)))
   (format t "n=~A fib=~A~%" n fibl))

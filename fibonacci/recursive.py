@@ -10,6 +10,6 @@ def fibo(n):
 def run(n):
     return fibo(n)
 
-n=35
+n=37
 s = utils.limit("{}".format(run(n)), 10)
 print('n={} fib={}'.format(n, s))

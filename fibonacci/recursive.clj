@@ -15,7 +15,7 @@
        (fib-rec-long (- n 2)))))
 
 (defn main []     
-  (let [n 35]
+  (let [n 37]
     (fibo n fib-rec "* plain")
     (fibo n fib-rec-long "* Long")))
 

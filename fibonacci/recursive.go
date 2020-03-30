@@ -18,6 +18,6 @@ func wrap(n int) int {
 }
 
 func main() {
-  var n int = 35
-  fmt.Printf("n=%d, f=%d\n", n, wrap(35))
+  var n int = 37
+  fmt.Printf("n=%d, f=%d\n", n, wrap(n))
 }

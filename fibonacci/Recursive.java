@@ -17,7 +17,7 @@ private static long recFibN(final int n) {
 }
 
 public static void main(String... args) {
-  int n = 35;
+  int n = 37;
   fibBig(n);
   fibLong(n);
   fib(n);

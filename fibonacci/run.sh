@@ -19,14 +19,14 @@ else
 fi
 
 echo $MSG_PYT
-if command -v python; then
-  PYT_EXE=python
-  $PYT_EXE --version
-elif command -v python3; then
+if command -v python3; then
   PYT_EXE=python3
   $PYT_EXE --version
 elif command -v python2; then
   PYT_EXE=python2
+  $PYT_EXE --version
+elif command -v python; then
+  PYT_EXE=python
   $PYT_EXE --version
 else
   echo $MSG_NOT_FOUND
@@ -148,6 +148,14 @@ fi
 if [ -v PYT_EXE ]; then
   echo $MSG_PYT
   $PYT_EXE recursive-cache.py
+fi
+
+echo
+echo "*** recursive (recur)"
+
+if [ -v PIL_EXE ]; then
+  echo $MSG_PIL
+  $PIL_EXE recursive-recur.l +
 fi
 
 echo
