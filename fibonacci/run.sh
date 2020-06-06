@@ -7,6 +7,7 @@ MSG_CSC="-- chicken (compiled)"
 MSG_ECL="-- ecl"
 MSG_CLJ="-- clojure"
 MSG_JAV="-- java"
+MSG_DVM="-- dalvik"
 
 echo "*** version"
 
@@ -81,6 +82,18 @@ else
   echo $MSG_NOT_FOUND
 fi
 
+echo $MSG_DVM
+if command -v dalvikvm; then
+  DVM_EXE=dalvikvm
+  ecj -version
+  dx --version
+  $DVM_EXE -showversion
+  ecj *.java
+  dx --dex --output=fibo.dex *.class
+else
+  echo $MSG_NOT_FOUND
+fi
+
 echo
 echo "*** recursive"
 
@@ -135,6 +148,11 @@ fi
 if [ -v JAV_EXE ]; then
   echo $MSG_JAV
   $JAV_EXE Recursive
+fi
+
+if [ -v DVM_EXE ]; then
+  echo $MSG_DVM
+  $DVM_EXE -cp fibo.dex Recursive
 fi
 
 echo
@@ -226,3 +244,9 @@ if [ -v JAV_EXE ]; then
   echo $MSG_JAV
   $JAV_EXE Iterative
 fi
+
+if [ -v DVM_EXE ]; then
+  echo $MSG_DVM
+  $DVM_EXE -cp fibo.dex Iterative
+fi
+

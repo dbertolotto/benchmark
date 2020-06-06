@@ -1,7 +1,15 @@
+# compiled stuff
 __pycache__
 *.fas
 *.cs
 *.ecl
 *.o
 *.class
+*.dex
+
+# logs
 *.log
+
+# temp files
+*.swp
+*.un~
