@@ -51,7 +51,7 @@ fi
 
 echo $MSG_CSC
 if command -v csc; then
-  CSC_EXE=csi
+  CSC_EXE=csc
   $CSC_EXE -release
 else
   echo $MSG_NOT_FOUND
