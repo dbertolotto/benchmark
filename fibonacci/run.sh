@@ -1,5 +1,6 @@
 MSG_NOT_FOUND="...not found"
 MSG_PIL="-- picolisp"
+MSG_P21="-- pil21"
 MSG_PYT="-- python"
 MSG_GOL="-- go"
 MSG_CSI="-- chicken (interpreted)"
@@ -15,6 +16,14 @@ echo $MSG_PIL
 if command -v pil; then
   PIL_EXE=pil
   $PIL_EXE -version -bye
+else
+  echo $MSG_NOT_FOUND
+fi
+
+echo $MSG_P21
+if command -v ~/pil21/pil21/pil; then
+  P21_EXE=~/pil21/pil21/pil
+  $P21_EXE -version -bye
 else
   echo $MSG_NOT_FOUND
 fi
@@ -102,6 +111,11 @@ if [ -v PIL_EXE ]; then
   $PIL_EXE recursive.l +
 fi
 
+if [ -v P21_EXE ]; then
+  echo $MSG_P21
+  $P21_EXE recursive.l +
+fi
+
 if [ -v PYT_EXE ]; then
   echo $MSG_PYT
   $PYT_EXE recursive.py
@@ -163,6 +177,11 @@ if [ -v PIL_EXE ]; then
   $PIL_EXE recursive-cache.l +
 fi
 
+if [ -v P21_EXE ]; then
+  echo $MSG_P21
+  $P21_EXE recursive-cache.l +
+fi
+
 if [ -v PYT_EXE ]; then
   echo $MSG_PYT
   $PYT_EXE recursive-cache.py
@@ -176,12 +195,22 @@ if [ -v PIL_EXE ]; then
   $PIL_EXE recursive-recur.l +
 fi
 
+if [ -v P21_EXE ]; then
+  echo $MSG_P21
+  $P21_EXE recursive-recur.l +
+fi
+
 echo
 echo "*** recursive (improved)"
 
 if [ -v PIL_EXE ]; then
   echo $MSG_PIL
   $PIL_EXE recursive-better.l +
+fi
+
+if [ -v P21_EXE ]; then
+  echo $MSG_P21
+  $P21_EXE recursive-better.l +
 fi
 
 if [ -v PYT_EXE ]; then
@@ -195,6 +224,11 @@ echo "*** iterative"
 if [ -v PIL_EXE ]; then
   echo $MSG_PIL
   $PIL_EXE iterative.l +
+fi
+
+if [ -v P21_EXE ]; then
+  echo $MSG_P21
+  $P21_EXE iterative.l +
 fi
 
 if [ -v PYT_EXE ]; then
