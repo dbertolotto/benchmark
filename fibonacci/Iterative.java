@@ -21,7 +21,7 @@ private static BigInteger itFibN(int n) {
 
 
 public static void main(String... args) {
-  int n = 50000;
+  int n = 80000;
   fibBig(n);
 }
 

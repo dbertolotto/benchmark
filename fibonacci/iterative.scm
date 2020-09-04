@@ -11,7 +11,7 @@
          (fib 1 (+ fib fib-prev)))
       ((>= num n) fib)))
 
-(let* ((n 50000)
+(let* ((n 80000)
        (fib (time (fib-iter n)))
        (fibl (limit (format "~A" fib) 10)))
   (format #t "n=~A fib=~A~%" n fibl))
