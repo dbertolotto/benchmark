@@ -9,6 +9,7 @@ MSG_ECL="-- ecl"
 MSG_CLJ="-- clojure"
 MSG_JAV="-- java"
 MSG_DVM="-- dalvik"
+MSG_NJS="-- node"
 
 echo "*** version"
 
@@ -103,6 +104,14 @@ else
   echo $MSG_NOT_FOUND
 fi
 
+echo $MSG_NJS
+if command -v node; then
+  NJS_EXE=node
+  $NJS_EXE -v
+else
+  echo $MSG_NOT_FOUND
+fi
+
 echo
 echo "*** recursive"
 
@@ -156,7 +165,7 @@ fi
 
 if [ -v CLJ_EXE ]; then
   echo $MSG_CLJ
-  $CLJ_EXE recursive.clj
+  $CLJ_EXE -M recursive.clj
 fi
 
 if [ -v JAV_EXE ]; then
@@ -167,6 +176,11 @@ fi
 if [ -v DVM_EXE ]; then
   echo $MSG_DVM
   $DVM_EXE -cp fibo.dex Recursive
+fi
+
+if [ -v NJS_EXE ]; then
+  echo $MSG_NJS
+  $NJS_EXE recursive.js
 fi
 
 echo
@@ -271,7 +285,7 @@ fi
 
 if [ -v CLJ_EXE ]; then
   echo $MSG_CLJ
-  $CLJ_EXE iterative.clj
+  $CLJ_EXE -M iterative.clj
 fi
 
 if [ -v JAV_EXE ]; then
@@ -282,5 +296,10 @@ fi
 if [ -v DVM_EXE ]; then
   echo $MSG_DVM
   $DVM_EXE -cp fibo.dex Iterative
+fi
+
+if [ -v NJS_EXE ]; then
+  echo $MSG_NJS
+  $NJS_EXE iterative.js
 fi
 
